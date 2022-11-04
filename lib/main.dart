@@ -10,6 +10,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //check
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Chat App',
