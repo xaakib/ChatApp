@@ -1,4 +1,4 @@
-import 'package:chatapp/screens/google_sigin.dart';
+import 'package:chatapp/screens/exam_timer_screen.dart';
 import 'package:chatapp/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
