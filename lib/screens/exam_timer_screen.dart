@@ -4,27 +4,35 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-class GoogleSigninSc extends StatefulWidget {
-  const GoogleSigninSc({super.key});
+class ExamScreen extends StatefulWidget {
+  const ExamScreen({super.key});
 
   @override
-  State<GoogleSigninSc> createState() => _GoogleSigninScState();
+  State<ExamScreen> createState() => _ExamScreenState();
 }
 
-class _GoogleSigninScState extends State<GoogleSigninSc> {
+class _ExamScreenState extends State<ExamScreen> {
   Timer? countdownTimer;
-  Duration myDuration = Duration(seconds: 10);
+  Duration myDuration = const Duration(minutes: 10);
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+
     startTimer();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    countdownTimer!.isActive ? countdownTimer!.cancel() : print("No has timer");
+    super.dispose();
   }
 
   void startTimer() {
     countdownTimer =
-        Timer.periodic(Duration(seconds: 1), (_) => setCountDown());
+        Timer.periodic(const Duration(seconds: 1), (_) => setCountDown());
   }
 
   // Step 4
@@ -35,7 +43,7 @@ class _GoogleSigninScState extends State<GoogleSigninSc> {
   // Step 5
   void resetTimer() {
     stopTimer();
-    setState(() => myDuration = Duration(seconds: 10));
+    setState(() => myDuration = const Duration(minutes: 10));
   }
 
   // Step 6
@@ -56,7 +64,7 @@ class _GoogleSigninScState extends State<GoogleSigninSc> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Exam"),
+        title: const Text("Exam"),
       ),
       body: Container(
           child: ListView.builder(
@@ -81,15 +89,16 @@ class _GoogleSigninScState extends State<GoogleSigninSc> {
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
                                       "Q.N ${index + 1}",
-                                      style: TextStyle(color: Colors.white),
+                                      style:
+                                          const TextStyle(color: Colors.white),
                                     ),
                                   ),
                                 ),
-                                SizedBox(width: 10),
-                                Card(
+                                const SizedBox(width: 10),
+                                const Card(
                                   color: Colors.black87,
                                   child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
+                                    padding: EdgeInsets.all(8.0),
                                     child: Text(
                                       "MARKS: 1",
                                       style: TextStyle(color: Colors.white),
@@ -167,7 +176,7 @@ class _GoogleSigninScState extends State<GoogleSigninSc> {
           onPressed: () {
             submit();
           },
-          child: Icon(Icons.check)),
+          child: const Icon(Icons.check)),
       bottomNavigationBar: Container(
         color: Colors.black45,
         height: 50,
@@ -176,7 +185,7 @@ class _GoogleSigninScState extends State<GoogleSigninSc> {
           child: Center(
               child: Text(
             "${myDuration.inMinutes.remainder(60)} : ${myDuration.inSeconds.remainder(60)}",
-            style: TextStyle(fontSize: 25),
+            style: const TextStyle(fontSize: 25),
           )),
         ),
       ),
