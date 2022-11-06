@@ -1,8 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:http/http.dart' as http;
 
 class ExamScreen extends StatefulWidget {
   const ExamScreen({super.key});
@@ -211,6 +210,11 @@ class _ExamScreenState extends State<ExamScreen> {
     );
 
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
+  void getExamFromInternet() {
+    String url = "https://shahriarsir.com/api/exam";
+    Future<http.Response> response = http.get(Uri.parse(url));
   }
 }
 
